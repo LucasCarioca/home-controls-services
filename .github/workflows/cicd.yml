@@ -1,0 +1,18 @@
+name: CICD
+on:
+  push:
+jobs:
+  ci:
+    uses: LucasCarioca/workflows/.github/workflows/ci-go.yml@v0.6.0
+    with:
+      go-version: 1.19
+      lint: false
+  release:
+    needs: ci
+    uses: LucasCarioca/workflows/.github/workflows/release-docker.yml@v0.10.1
+    with:
+      registry: ghcr.io
+      image_name: lucascarioca/home-controls-services
+    secrets:
+      username: ${{ github.actor }}
+      password: ${{ secrets.GITHUB_TOKEN }}
