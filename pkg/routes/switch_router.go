@@ -15,7 +15,7 @@ type SwitchRouter struct {
 
 type CreateSwitchRequest struct {
 	Name  string `json:"name" binding:"required"`
-	State string `json:"state" binding:"required""`
+	State string `json:"state" binding:"required"`
 }
 
 type UpdateSwitchRequest struct {
