@@ -51,8 +51,8 @@ func (s *SwitchService) DeleteByID(id int) error {
 	return nil
 }
 
-//UpdateDesiredStateById update the desired state of a given switch
-func(s *SwitchService) UpdateDesiredStateById(id int, desiredState models.SwitchState) (*models.Switch, error) {
+//UpdateDesiredStateByID update the desired state of a given switch
+func(s *SwitchService) UpdateDesiredStateByID(id int, desiredState models.SwitchState) (*models.Switch, error) {
 	sw, err := s.GetByID(id)
 	if err != nil {
 		return nil, err
@@ -62,8 +62,8 @@ func(s *SwitchService) UpdateDesiredStateById(id int, desiredState models.Switch
 	return sw, nil
 }
 
-//UpdateStateById update the actual state of a given switch
-func(s *SwitchService) UpdateStateById(id int, state models.SwitchState) (*models.Switch, error) {
+//UpdateStateByID update the actual state of a given switch
+func(s *SwitchService) UpdateStateByID(id int, state models.SwitchState) (*models.Switch, error) {
 	sw, err := s.GetByID(id)
 	if err != nil {
 		return nil, err

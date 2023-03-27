@@ -9,15 +9,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//SwitchRouter router for switch crud routes
 type SwitchRouter struct {
 	s *services.SwitchService
 }
 
+//CreateSwitchRequest payload structure for creating new switches
 type CreateSwitchRequest struct {
 	Name  string `json:"name" binding:"required"`
 	State string `json:"state" binding:"required"`
 }
 
+//UpdateSwitchRequest payload structure for updating switches
 type UpdateSwitchRequest struct {
 	DesiredState *string `json:"desired-state"`
 	State        *string `json:"state"`
@@ -122,7 +125,7 @@ func (r *SwitchRouter) updateSwitch(ctx *gin.Context) {
 
 	if data.DesiredState != nil {
 		if desiredState, ok := models.SwitchStates[*data.DesiredState]; ok {
-			sw, err := r.s.UpdateDesiredStateById(id, desiredState)
+			sw, err := r.s.UpdateDesiredStateByID(id, desiredState)
 			if err != nil {
 				ctx.JSON(http.StatusBadRequest, gin.H{
 					"message": "missing or incorrect fields received",
@@ -140,7 +143,7 @@ func (r *SwitchRouter) updateSwitch(ctx *gin.Context) {
 
 	if data.State != nil {
 		if state, ok := models.SwitchStates[*data.State]; !ok {
-			sw, err := r.s.UpdateStateById(id, state)
+			sw, err := r.s.UpdateStateByID(id, state)
 			if err != nil {
 				ctx.JSON(http.StatusBadRequest, gin.H{
 					"message": "missing or incorrect fields received",
