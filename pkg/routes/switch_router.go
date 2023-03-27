@@ -9,18 +9,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//SwitchRouter router for switch crud routes
+// SwitchRouter router for switch crud routes
 type SwitchRouter struct {
 	s *services.SwitchService
 }
 
-//CreateSwitchRequest payload structure for creating new switches
+// CreateSwitchRequest payload structure for creating new switches
 type CreateSwitchRequest struct {
 	Name  string `json:"name" binding:"required"`
 	State string `json:"state" binding:"required"`
 }
 
-//UpdateSwitchRequest payload structure for updating switches
+// UpdateSwitchRequest payload structure for updating switches
 type UpdateSwitchRequest struct {
 	DesiredState *string `json:"desired-state"`
 	State        *string `json:"state"`
